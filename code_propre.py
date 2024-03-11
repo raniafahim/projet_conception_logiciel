@@ -39,4 +39,4 @@ data_musique = data_musique.reset_index(drop=True)
 
 
 
-data_musique.to_csv("/home/ensai/Bureau/Conception de logiciel/projet/projet_conception_logiciel/Musique2.csv",sep=";")
+data_musique.to_csv("/home/ensai/Bureau/Conception de logiciel/projet/projet_conception_logiciel/Musique.csv",sep=";")
