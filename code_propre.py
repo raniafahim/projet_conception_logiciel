@@ -14,20 +14,19 @@ soup = BeautifulSoup(html, 'html.parser')
 table_rows = soup.find_all('tr')
 
 data = []
-scraping_started = False  # Variable pour indiquer le début du scraping des données utiles
+scraping_started = False  
 
 for row in table_rows:
-    # Vérifiez si la ligne contient des informations utiles
     if "4/11/1984" in row.text:
-        scraping_started = True  # Marquez le début du scraping des données utiles
+        scraping_started = True  
     if scraping_started:
         cols = row.find_all('td')
         cols = [ele.text.strip() for ele in cols]
-        data.append(cols)  # Ajoutez les données utiles à la liste
+        data.append(cols) 
 
-# Maintenant, vous pouvez traiter vos données comme auparavant
-for row in data: 
-    print(row)
+
+# for row in data: 
+#     print(row)
 
 
 
@@ -35,4 +34,9 @@ data_musique = pd.DataFrame(data, columns = ['N°', 'Date', 'Artiste', 'Titre', 
 
 
 
-data_musique.to_csv("/home/ensai/Bureau/Conception de logiciel/projet/projet_conception_logiciel/Musique.csv",sep=";",index_label='id')
+data_musique= data_musique.dropna()
+data_musique = data_musique.reset_index(drop=True)
+
+
+
+data_musique.to_csv("/home/ensai/Bureau/Conception de logiciel/projet/projet_conception_logiciel/Musique2.csv",sep=";")
