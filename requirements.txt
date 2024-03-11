@@ -1,3 +1,6 @@
 requests 
 beautifulsoup4
-spotipy-2.23.0
+spotipy
+requests
+bs4
+pandas
