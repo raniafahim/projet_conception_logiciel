@@ -4,3 +4,7 @@ spotipy
 requests
 bs4
 pandas
+python-dotenv
+reportlab
+datetime
+qrcode
