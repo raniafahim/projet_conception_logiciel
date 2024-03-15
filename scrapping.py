@@ -69,16 +69,16 @@ class WikipediaScraper:
         data_musique = data_musique.reset_index(drop=True)
         return data_musique
 
-    def save_to_csv(self, file_path, delimiter=';'):
+    def save_to_csv(self, file_name, delimiter=';'):
         data_frame = self.create_dataframe()
-        data_frame.to_csv(file_path, sep=delimiter)
+        data_frame.to_csv(file_name, sep=delimiter)
 
 # Scrapping 
 url_de_la_page = "https://fr.wikipedia.org/wiki/Liste_des_singles_num%C3%A9ro_un_en_France"
 target_date = "4/11/1984"
 scraper = WikipediaScraper(url_de_la_page)
 scraper.scrape_data(target_date)
-scraper.save_to_csv("/home/ensai/Bureau/Conception de logiciel/projet/projet_conception_logiciel/Musique.csv")
+scraper.save_to_csv("Musique.csv")
 
 
 
