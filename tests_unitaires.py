@@ -49,6 +49,40 @@ from unittest.mock import MagicMock, patch
 
 
 
+
+import unittest
+from unittest.mock import patch, MagicMock
+from api import SpotifyApi # Assurez-vous de remplacer 'votre_module' par le nom de votre fichier
+
+class TestSpotifyApi(unittest.TestCase):
+    def setUp(self):
+        self.finder = SpotifyApi()
+
+    @patch('api.spotipy.Spotify.search')
+    def test_recherche_piste_trouvee(self, mock_search):
+        mock_search.return_value = {'tracks': {'items': [{'uri': 'spotify:track:123'}]}}
+        uri = self.finder.recherche_piste('titre', 'artiste')
+        self.assertEqual(uri, 'spotify:track:123')
+
+    @patch('api.Spotify.search')
+    def test_recherche_piste_non_trouvee(self, mock_search):
+        mock_search.return_value = {'tracks': {'items': []}}
+        uri = self.finder.recherche_piste('titre', 'artiste')
+        self.assertEqual(uri, '')
+
+    @patch('api.Spotify.track')
+    def test_obtenir_audio(self, mock_track):
+        mock_track.return_value = {'preview_url': 'https://exemple.com/preview.mp3'}
+        url = self.finder.obtenir_audio('spotify:track:123')
+        self.assertEqual(url, 'https://exemple.com/preview.mp3')
+
+    
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+
 import unittest
 from unittest.mock import MagicMock, patch
 from scrapping import WikipediaScraper  
