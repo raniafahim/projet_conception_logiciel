@@ -2,21 +2,15 @@ import spotipy
 import requests
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
-from dotenv import load_dotenv
+import dotenv
 import pandas as pd 
-from scrapping import WikipediaScraper
+from scrapping import data_musique
 
 
-
-data_musique = WikipediaScraper.create_dataframe
-
-
-load_dotenv() 
-
-
-client_id = os.getenv("CLIENT_ID")
-client_secret = os.getenv("CLIENT_SECRET")
-sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id="4d3bffd173c84f21ab47981ba6cd15f8", client_secret="fa770e1876084e4288c17530adf5423f"))
+dotenv.load_dotenv(override= True)
+client_id = os.environ["CLIENT_ID"]
+client_secret = os.environ["CLIENT_SECRET"]
+sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id= client_id, client_secret=client_secret ))
 
 def recherche_piste(titre: str, artiste: str) -> str:
     """

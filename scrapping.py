@@ -78,7 +78,10 @@ url_de_la_page = "https://fr.wikipedia.org/wiki/Liste_des_singles_num%C3%A9ro_un
 target_date = "4/11/1984"
 scraper = WikipediaScraper(url_de_la_page)
 scraper.scrape_data(target_date)
+data_musique = scraper.create_dataframe()
 scraper.save_to_csv("Musique.csv")
+
+
 
 
 
