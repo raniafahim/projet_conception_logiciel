@@ -8,8 +8,8 @@ from datetime import datetime
 "06/01/1985;Peter et Sloane;Besoin de rien, envie de toi"
 data = {
     'Artiste': ['Artiste1', 'Artiste2', 'Artiste3','Peter et Sloane','Artiste4'],
-    'Titre': ['Titre1', 'Titre2', 'Titre3',"Besoin de rien, envie de toi"'Titre4',],
-    'Date': ["04/11/1984", "4/11/1984", "04/11/1984","04/11/1984","06/01/1985"],
+    'Titre': ['Titre1', 'Titre2', 'Titre3',"Besoin de rien, envie de toi",'Titre4',],
+    'Date': ["04/11/1984", "04/11/1984", "04/11/1984","04/11/1984","06/01/1985"],
     'Audio': ['http://lien-audio-1', 'http://lien-audio-2', 'http://lien-audio-3', "https://p.scdn.co/mp3-preview/391b635047403beaec61ac63d502ae64ebd84f31?cid=4d3bffd173c84f21ab47981ba6cd15f8",'http://lien-audio-4']
 }
 
@@ -18,8 +18,9 @@ ma_table_test = pd.DataFrame(data)
 
 
 def generer_carte(pdf, artiste, titre, date, audio_url):
+
     # Convertir la date en objet datetime
-    date_obj = datetime.strptime(date, "%d/%m/%Y")
+    #date_obj = datetime.strptime(date, "%d/%m/%Y")
     
     # Dessiner la bordure de la carte
     pdf.setStrokeColorRGB(0.5, 0, 0.5)  # Violet
@@ -51,7 +52,7 @@ def generer_carte(pdf, artiste, titre, date, audio_url):
     
     # Ajouter la date de la chanson au verso
     pdf.setFont("Helvetica", 14)
-    pdf.drawCentredString(150, 320, date_obj.strftime("%d/%m/%Y"))
+    pdf.drawCentredString(150, 320, date)
     
     # Ajouter le titre de la chanson au verso
     pdf.setFont("Helvetica-Bold", 14)

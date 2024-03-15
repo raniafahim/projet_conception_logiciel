@@ -4,13 +4,13 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import os
 import dotenv
 import pandas as pd 
-from scrapping import data_musique
+
 
 
 dotenv.load_dotenv(override= True)
 client_id = os.environ["CLIENT_ID"]
 client_secret = os.environ["CLIENT_SECRET"]
-sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id= client_id, client_secret=client_secret ))
+sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id= client_id, client_secret=client_secret))
 
 def recherche_piste(titre: str, artiste: str) -> str:
     """
@@ -87,21 +87,6 @@ renvoyer_piste_audio(titre_exemple,artiste_exemple)
 
 
 
-table_carte = data_musique[['Date', 'Artiste', 'Titre']].copy()
-table_carte['Audio'] = None
-
-
-for index, row in table_carte.iterrows():
-    titre = row['Titre']
-    artiste = row['Artiste']
-    print(f"Processing {titre} by {artiste}")
-    audio_url = renvoyer_piste_audio(titre, artiste)
-    print(f"Audio URL: {audio_url}")
-    table_carte.loc[index, 'Audio'] = audio_url
-
-table_carte = table_carte.dropna()
-table_carte = table_carte.reset_index(drop=True)
-table_carte.to_csv("table_carte.csv",sep=";")   
 
 
 
