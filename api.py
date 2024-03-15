@@ -99,7 +99,11 @@ for index, row in table_carte.iterrows():
     print(f"Audio URL: {audio_url}")
     table_carte.loc[index, 'Audio'] = audio_url
 
-table_carte.to_csv("table_carte.csv",sep=";")
+table_carte = table_carte.dropna()
+table_carte = table_carte.reset_index(drop=True)
+table_carte.to_csv("table_carte.csv",sep=";")   
+
+
 
 
 
