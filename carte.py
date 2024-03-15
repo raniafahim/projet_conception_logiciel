@@ -57,8 +57,7 @@ def generer_carte(pdf, artiste, titre, date, audio_url):
     pdf.setFont("Helvetica-Bold", 14)
     pdf.drawCentredString(150, 240, titre)
 
-def generer_pdf(data_frame):
-    pdf_path = "playlist_test.pdf"
+def generer_pdf(data_frame, pdf_path):
     pdf = canvas.Canvas(pdf_path, pagesize=letter)
 
     for index, row in data_frame.iterrows():
@@ -73,4 +72,4 @@ def generer_pdf(data_frame):
 
 
 if __name__ == "__main__":
-    generer_pdf(ma_table_test)
+    generer_pdf(ma_table_test, "playlist_test.pdf")
